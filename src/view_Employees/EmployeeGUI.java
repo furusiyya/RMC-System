@@ -1,0 +1,142 @@
+package view_Employees;
+
+import java.awt.Color;
+
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.border.BevelBorder;
+
+import java.awt.CardLayout;
+import java.awt.Font;
+import javax.swing.JList;
+
+public class EmployeeGUI {
+
+//	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					ReportGUI window = new ReportGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+
+	/**
+	 * Create the application.
+	 */
+	AddEmployee addemp = null;
+	ViewEmployee viewemp = null;
+	AccountsGUI acc = null;
+	public EmployeeGUI() {
+		initialize();
+		addemp = new AddEmployee();
+		viewemp = new ViewEmployee();
+		acc = new AccountsGUI();
+	}
+
+
+	public JPanel cardPanel;
+	/**
+	 * Initialize the contents of the frame.
+	 */
+public	JLayeredPane panel;
+	@SuppressWarnings("rawtypes")
+	public JList list;
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void initialize() {
+//		frame = new JFrame();
+//		frame.setBounds(100, 100, 1109, 671);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.getContentPane().setLayout(null);
+		
+		panel= new JLayeredPane();
+		panel.setBounds(0, 0, 606, 606);
+//		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_1.setBounds(21, 21, 200, 570);
+		panel_1.setBackground(Color.WHITE);
+		cardPanel = new JPanel();
+		cardPanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		cardPanel.setBounds(231, 21, 1100, 570);
+		cardPanel.setBackground(Color.WHITE);
+		panel.add(panel_1,1);
+		String[] buttons = {"Add Employees","View Employee","Accounts"};
+		list = new JList(buttons);
+		list.setForeground(Color.DARK_GRAY);
+		list.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		panel_1.setLayout(null);
+		list.setSelectedIndex(0);
+		list.setSelectionBackground(new Color(124,123,173));
+		list.setSelectionForeground(Color.WHITE);
+		list.setBounds(10, 8, 190, 490);
+		panel_1.add(list);
+		panel.add(cardPanel,1);
+		cardPanel.setLayout(new CardLayout(0, 0));
+		list.addListSelectionListener(new ListSelectionListener() {
+			
+			public void valueChanged(ListSelectionEvent e) {
+				if( list.getSelectedIndex() == 0){
+					try {
+						 cardPanel.remove(test);
+						test = addemp.panel;
+						 cardPanel.add(test);
+						 cardPanel.revalidate();
+						 cardPanel.setVisible(true);
+					} catch (NullPointerException e1){
+						test = addemp.panel;
+						 cardPanel.add(test);
+						 cardPanel.revalidate();
+						 cardPanel.setVisible(true);
+					}
+				}
+				
+				
+				else if( list.getSelectedIndex() == 1){
+					try {
+						 cardPanel.remove(test);
+						test = viewemp.panel;
+						 cardPanel.add(test);
+						 cardPanel.revalidate();
+						 cardPanel.setVisible(true);
+					} catch (NullPointerException e1) {
+						test = viewemp.panel;
+						 cardPanel.add(test);
+						 cardPanel.revalidate();
+						 cardPanel.setVisible(true);
+					}
+				}
+				
+				else if( list.getSelectedIndex() == 2){
+					try {
+						 cardPanel.remove(test);
+						test = acc.panel;
+						 cardPanel.add(test);
+						 cardPanel.revalidate();
+						 cardPanel.setVisible(true);
+					} catch (NullPointerException e1) {
+						test = acc.panel;
+						 cardPanel.add(test);
+						 cardPanel.revalidate();
+						 cardPanel.setVisible(true);
+					}
+				}
+				
+			}
+		});
+	}
+	JPanel test= null;
+}
